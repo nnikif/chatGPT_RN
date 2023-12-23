@@ -1,0 +1,22 @@
+{
+  "cli": {
+    "version": ">= 5.9.3"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "BASE_URL": "https://chatgpt-mono-d477e0c1be74.herokuapp.com/api"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

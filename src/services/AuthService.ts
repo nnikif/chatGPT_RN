@@ -5,10 +5,17 @@ import * as SecureStore from 'expo-secure-store';
 const baseUrl = Constants.expoConfig?.extra?.baseUrl as string | undefined;
 
 export const login = async (username: string, password: string): Promise<string> => {
+    console.log('hello!')
     const loginUrl = `${baseUrl}/auth/login-token`
-    // console.log(loginUrl);
+    console.log(loginUrl);
+    try {
     const response = await axios.post(loginUrl, { username, password });
     return response?.data?.accessToken;
+    }
+    catch (error) {
+        console.log(error);
+        return ''
+    }
 };
 
 

@@ -70,7 +70,7 @@ const IndividualChatScreen:React.FC<IndividualChatScreenProps> = ({ route }) => 
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS === "ios" ? 124 : 0} // Adjust based on your layout
+            keyboardVerticalOffset={Platform.OS === "ios" ? 124 : 120} // Adjust based on your layout
             style={styles.container}
         >
         <ScrollView
