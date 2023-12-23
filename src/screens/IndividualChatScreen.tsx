@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {RouteProp, useNavigation} from '@react-navigation/native';
-import {View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, Platform, TextInput, Button, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, Platform, TextInput, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {FullChat, getChatById, Message, postMessage} from '../services/ChatService';
+import {FullChat, getChatById, postMessage} from '../services/ChatService';
 import Markdown from 'react-native-markdown-display';
 import * as Clipboard from 'expo-clipboard';
 import {RootStackParamList} from "../../routes";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 
 
 type IndividualChatScreenProps = {
@@ -23,7 +24,12 @@ const IndividualChatScreen:React.FC<IndividualChatScreenProps> = ({ route }) => 
     const [newMessage, setNewMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const scrollViewRef = useRef<ScrollView>(null);
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'IndividualChat'>>();
 
+    useEffect(() => {
+        const dynamicTitle = route.params.chatTitle || 'Individual Chat';
+        navigation.setOptions({ title: dynamicTitle });
+    }, [navigation, route.params.chatTitle]);
 
     useEffect(() => {
 

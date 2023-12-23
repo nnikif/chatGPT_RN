@@ -80,7 +80,7 @@ export const createChat = async (title: string) => {
         });
 
         // Assuming the response contains an object with an '_id' field
-        return response?.data?._id;
+        return response?.data;
     } catch (error) {
         console.error('Error creating chat:', error);
         throw error;

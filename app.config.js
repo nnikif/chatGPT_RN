@@ -1,6 +1,11 @@
 import 'dotenv/config';
 
 export default ({ config }) => {
+    // let envFile = '.env';
+    // if (process.env.ENV_VAR) {
+    //     envFile = `.env.${process.env.ENV_VAR}`;
+    // }
+    // require('dotenv').config({ path: envFile });
     return {
         ...config,
         extra: {
@@ -13,6 +18,9 @@ export default ({ config }) => {
             package: "com.nnikif.gptclient",
             // ... other android specific settings
         },
+        ios:{
+            bundleIdentifier: "com.nnikif.gptclient",
+        }
 
     };
 };

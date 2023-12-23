@@ -25,8 +25,8 @@ const ChatListScreen = () => {
 
     const handleCreateChat = async () => {
         try {
-            const chatId = await createChat(newChatTitle);
-            navigation.navigate('IndividualChat', { chatId });
+            const { _id: chatId, title: chatTitle} = await createChat(newChatTitle);
+            navigation.navigate('IndividualChat', { chatId, chatTitle });
         } catch (error) {
             console.error('Error creating new chat:', error);
         }
@@ -47,7 +47,7 @@ const ChatListScreen = () => {
             data={chats}
     keyExtractor={item => item.id}
             renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => navigation.navigate('IndividualChat', { chatId: item.id })}>
+                <TouchableOpacity onPress={() => navigation.navigate('IndividualChat', { chatId: item.id, chatTitle: item.title })}>
                     <Text>{item.title}</Text>
                 </TouchableOpacity>
             )}

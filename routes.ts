@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 export type RootStackParamList = {
     Login: undefined;
     ChatList: undefined;
-    IndividualChat: { chatId: string };
+    IndividualChat: { chatId: string, chatTitle:string };
     // Add other routes here as needed
 };
 

@@ -5,9 +5,7 @@ import * as SecureStore from 'expo-secure-store';
 const baseUrl = Constants.expoConfig?.extra?.baseUrl as string | undefined;
 
 export const login = async (username: string, password: string): Promise<string> => {
-    console.log('hello!')
     const loginUrl = `${baseUrl}/auth/login-token`
-    console.log(loginUrl);
     try {
     const response = await axios.post(loginUrl, { username, password });
     return response?.data?.accessToken;
@@ -26,7 +24,7 @@ export async function storeToken(token: string){
     } catch (error) {
         // There was an error on the native side
     }
-};
+}
 
 // Retrieve the token
 export async function retrieveToken() {
@@ -37,7 +35,7 @@ export async function retrieveToken() {
         // There was an error on the native side
         return null;
     }
-};
+}
 
 // Remove the token
 export async function removeToken ()  {
@@ -47,4 +45,4 @@ export async function removeToken ()  {
     } catch (error) {
         // There was an error on the native side
     }
-};
+}
