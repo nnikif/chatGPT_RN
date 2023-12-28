@@ -1,11 +1,11 @@
 import 'dotenv/config';
 
 export default ({ config }) => {
-    // let envFile = '.env';
-    // if (process.env.ENV_VAR) {
-    //     envFile = `.env.${process.env.ENV_VAR}`;
-    // }
-    // require('dotenv').config({ path: envFile });
+    let envFile = '.env';
+    if (process.env.ENV_VAR) {
+        envFile = `.env.${process.env.ENV_VAR}`;
+    }
+    require('dotenv').config({ path: envFile });
     return {
         ...config,
         extra: {

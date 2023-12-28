@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput, Button} from 'react-native';
 import {Chat, createChat, getChatTitles} from '../services/ChatService';
-import {useNavigation} from "@react-navigation/native";
+import {useFocusEffect, useNavigation} from "@react-navigation/native";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../../routes";
 
@@ -10,18 +10,31 @@ const ChatListScreen = () => {
     const [newChatTitle, setNewChatTitle] = useState('');
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'ChatList'>>();
 
-    useEffect(() => {
-        const fetchChats = async () => {
-            try {
-                const chatTitles = await getChatTitles();
-                setChats(chatTitles);
-            } catch (error) {
-                console.error('Error loading chats:', error);
-            }
-        };
 
-        fetchChats();
-    }, []);
+    const fetchChats = async () => {
+        try {
+            const chatTitles = await getChatTitles();
+            setChats(chatTitles);
+        } catch (error) {
+            console.error('Error loading chats:', error);
+        }
+    };
+
+    useFocusEffect(
+        React.useCallback(() => {
+            // Fetch data when the screen is focused
+            fetchChats();
+
+        }, [])
+    );
+
+    // useEffect(() => {
+    //
+    //
+    //     fetchChats();
+    // }, []);
+
+
 
     const handleCreateChat = async () => {
         try {
